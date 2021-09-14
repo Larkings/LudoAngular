@@ -1,8 +1,6 @@
 {
-  "name": "team14",
-  "version": "1.0.0",
-  "description": "Mens erger je niet multiplayer game, with extendable features for project EWA",
-  "main": "index.js",
+  "name": "mens-erger-je-niet",
+  "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -13,18 +11,15 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.2.0",
-    "@angular/cdk": "^12.2.5",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
     "@angular/forms": "~12.2.0",
-    "@angular/material": "^12.2.5",
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "bootstrap": "^5.1.1",
     "jquery": "^3.6.0",
-    "popper": "^1.0.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
@@ -43,11 +38,5 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.3.5"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.fdmci.hva.nl/ewa-dt/2122/team14.git"
-  },
-  "author": "Kevin Newland, Jordan Op den Kelder, Bao Huynh, Lloyd Larbi",
-  "license": "MIT"
+  }
 }

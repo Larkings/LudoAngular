@@ -1,27 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-// MAIN COMPONENTS
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './mainpage/home/home.component';
-import { NavbarComponent } from './mainpage/navbar/navbar.component';
 import { HeaderComponent } from './mainpage/header/header.component';
-
-// MODULE COMPONENTS
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from '../app-routing.module';
-
+import { SidebarComponent } from './mainpage/sidebar/sidebar.component';
+import { NavbarComponent } from './mainpage/navbar/navbar.component';
+import { HomeComponent } from './mainpage/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HeaderComponent,
+    SidebarComponent,
     NavbarComponent,
-    HeaderComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule
   ],
   providers: [],
