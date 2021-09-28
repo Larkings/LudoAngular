@@ -1,27 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './modules/app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './mainpage/header/header.component';
-import { SidebarComponent } from './mainpage/sidebar/sidebar.component';
-import { NavbarComponent } from './mainpage/navbar/navbar.component';
-import { HomeComponent } from './mainpage/home/home.component';
-import {MaterialModule} from "./material/material.module";
+import { MaterialModule } from "./modules/material.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthModule } from './auth/auth.module';
+import { SharedModule } from './modules/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    SidebarComponent,
-    NavbarComponent,
-    HomeComponent
+AppComponent    
   ],
   imports: [
+    AuthModule,
+    SharedModule,
     BrowserModule,
-    AppRoutingModule,
     MaterialModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

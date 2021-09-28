@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Mens Erger Je Niet</span>
+  <span class="example-spacer"></span>
+  <button
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>share</mat-icon>
+  </button>
+  <button mat-raised-button><mat-icon>home</mat-icon>Home</button>
+  <button mat-raised-button>Play Game</button>
+  <button mat-raised-button>Settings</button>
+  <button mat-raised-button>About us</button>
+  <!-- <ul class="navbar-nav login-section"> -->
+    <!-- <li class="nav-item"> -->
+      <button
+        mat-raised-button
+        aria-current="page"
+        class="active"
+        [routerLink]="['register']" routerLinkActive="active" 
+      >
+        Register
+      </button>
+    <!-- </li> -->
+    <!-- <li class="nav-item"> -->
+      <button
+        mat-raised-button
+        aria-current="page"
+        class=" active"
+        [routerLink]="['login']" routerLinkActive="active" 
+      >
+        Log In
+      </button>
+    <!-- </li> -->
+    <button
+        mat-raised-button
+        aria-current="page"
+        class=" active"
+        [routerLink]="['reset-password']" routerLinkActive="active" 
+      >
+        Reset Password
+      </button>
+  <!-- </ul> -->
+    
+</mat-toolbar>

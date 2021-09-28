@@ -1,0 +1,13 @@
+button{
+  margin-right: 1rem;
+}
+
+.login-section{
+  margin-left: auto;
+  margin-right: unset !important;
+
+}
+
+.navbar-nav{
+  margin-right: auto;
+}
