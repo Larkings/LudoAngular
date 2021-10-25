@@ -8,6 +8,9 @@ import { ColumnOneComponent } from '../shared/layouts/column-one/column-one.comp
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {GamesetupComponent} from "../shared/components/gamesetup/gamesetup.component";
+import {DiceComponent} from "../shared/components/dice/dice.component";
+import {Test2dComponent} from "../shared/components/test2d/test2d.component";
 
 
 
@@ -23,12 +26,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     Test2dComponent
 
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    RouterModule,
-    FlexLayoutModule
-  ],
+    imports: [
+        CommonModule,
+        MaterialModule,
+        RouterModule,
+        FlexLayoutModule,
+
+    ],
   exports: [
      ColumnOneComponent
   ]
