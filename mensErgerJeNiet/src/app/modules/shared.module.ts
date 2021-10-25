@@ -18,6 +18,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HomeComponent,
     SidebarComponent,
     ColumnOneComponent,
+    GamesetupComponent,
+    DiceComponent,
+    Test2dComponent
 
   ],
   imports: [

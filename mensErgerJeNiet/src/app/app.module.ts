@@ -9,22 +9,31 @@ import { SharedModule } from './modules/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+
+
+
 @NgModule({
-  declarations: [
-AppComponent    
-  ],
-  imports: [
-    AuthModule,
-    SharedModule,
-    BrowserModule,
-    MaterialModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    FormsModule
-   
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        AuthModule,
+        SharedModule,
+        BrowserModule,
+        MaterialModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        FormsModule,
+
+
+
+
+    ],
+    providers: [],
+    exports: [
+
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

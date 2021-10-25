@@ -66,7 +66,7 @@ const MaterialComponents =[
   MatGridListModule,
   MatRadioModule,
   MatDatepickerModule,
-  MatTooltipModule
+  MatTooltipModule,
 
 ]
 
