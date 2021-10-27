@@ -1,0 +1,64 @@
+.game-board{
+  display: grid;
+  grid-template-columns: 20px 20px 20px 20px 20px  20px 20px 20px 20px 20px  20px 20px 20px 20px 20px 20px 20px;
+  grid-template-rows: 20px 20px 20px 20px 20px  20px 20px 20px 20px 20px  20px 20px 20px 20px 20px 20px 20px;
+/*  grid-template-columns: 12px 12px 12px 12px 12px  12px 12px 12px 12px 12px  12px 12px 12px 12px 12px 12px 12px;
+  grid-template-rows: 12px 12px 12px 12px 12px  12px 12px 12px 12px 12px  12px 12px 12px 12px 12px 12px 12px;*/
+  justify-content: center;
+}
+
+.box {
+  background-color: #d9d9d9;
+  border: 2px solid black;
+}
+
+.canvas{
+  padding-top: 10px;
+  padding-left: 200px;
+  display: flex;
+  align-content: center;
+}
+
+.box-purple{
+  background-color: purple;
+}
+
+.box-purple-finish{
+  background-color: purple;
+  border: 2px solid white;
+}
+
+.box-red{
+  background-color: darkred;
+}
+.box-blue{
+  background-color: blue;
+}
+
+.box-green{
+  background-color: green;
+}
+
+.box-yellow{
+  background-color: darkorange;
+}
+
+.box-blue-path{
+  background-color: blue;
+  border: 2px solid white;
+}
+
+.box-red-path{
+  background-color: red;
+  border: 2px solid white;
+}
+
+.box-green-path{
+  background-color: green;
+  border: 2px solid white;
+}
+
+.box-yellow-path{
+  background-color: darkorange;
+  border: 2px solid white;
+}
