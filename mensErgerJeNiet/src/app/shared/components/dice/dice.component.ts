@@ -10,7 +10,7 @@ import {Dice} from "../../../models/Dice";
 
 export class DiceComponent implements OnInit{
 
-  public diceValue: number = 1 ;
+  public diceValue: number = 0 ;
 
   constructor() {}
 
@@ -18,7 +18,7 @@ export class DiceComponent implements OnInit{
   console.log(this.diceValue)
   }
 
-  rollDice(){
+  onRollDiceSelected(){
     this.diceValue= Dice.rollDice()
     console.log(this.diceValue)
   }

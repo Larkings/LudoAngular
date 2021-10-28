@@ -12,9 +12,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
+
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+
+
     ],
     imports: [
         AuthModule,
@@ -25,10 +28,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         BrowserAnimationsModule,
         ReactiveFormsModule,
         FormsModule,
-
-
-
-
     ],
     providers: [],
     exports: [

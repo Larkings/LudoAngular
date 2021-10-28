@@ -8,7 +8,7 @@ export class Dice {
 
   //roll dice and returns a random integer number between 1-6
   public static rollDice(): number {
-    let randomNumber = getRandomInt(1, 6);
+    let randomNumber = getRandomInt(1, 7);
     return randomNumber;
   }
 
