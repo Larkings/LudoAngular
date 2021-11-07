@@ -8,7 +8,7 @@ import { ColumnOneComponent } from '../shared/layouts/column-one/column-one.comp
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { BoardComponent} from "../shared/components/board/board.component";
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HomeComponent,
     SidebarComponent,
     ColumnOneComponent,
-
+    BoardComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +27,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule
   ],
   exports: [
-     ColumnOneComponent
+    ColumnOneComponent,
+    BoardComponent
   ]
 })
 export class SharedModule { }

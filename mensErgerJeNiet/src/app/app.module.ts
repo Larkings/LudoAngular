@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './modules/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {AgGridModule} from "ag-grid-angular";
+
 
 
 @NgModule({
   declarations: [
-AppComponent    
+AppComponent
   ],
   imports: [
     AuthModule,
@@ -21,8 +23,9 @@ AppComponent
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
-   
+    FormsModule,
+    AgGridModule.withComponents([])
+
   ],
   providers: [],
   bootstrap: [AppComponent]
