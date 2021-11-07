@@ -21,7 +21,7 @@ import { BoardComponent} from "../shared/components/board/board.component";
     HomeComponent,
     SidebarComponent,
     ColumnOneComponent,
-    BoardComponent
+    BoardComponent,
     GamesetupComponent,
     DiceComponent,
     Test2dComponent
