@@ -40,7 +40,7 @@ export class Player {
   get numPawnsInPlay() {
     let num = 0;
     for (let pawn of this.thePawns) {
-      if (pawn.currentPosition >= 0) num++;
+      if (pawn.currentPositionIndex >= 0) num++;
     }
     return num;
   };
@@ -48,14 +48,14 @@ export class Player {
   get numFreePawns() {
     let num = 0;
     for (let pawn of this.thePawns) {
-      if (pawn.currentPosition < 0) num++;
+      if (pawn.currentPositionIndex < 0) num++;
     }
     return num;
   };
 
   getFreePawn() {
     for (let pawn of this.thePawns) {
-      if (pawn.currentPosition < 0) return pawn;
+      if (pawn.currentPositionIndex < 0) return pawn;
     }
     return null;
   };

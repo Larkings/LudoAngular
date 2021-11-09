@@ -31,7 +31,7 @@ export class Board {
   public placeAFreePawnAtStartPosition(player: Player): boolean {
     let freePawn = player.getFreePawn();
     if (freePawn == null) return false;
-    freePawn.currentPosition = player.startPosition;
+    freePawn.currentPositionIndex = player.startPosition;
     return true;
   }
 

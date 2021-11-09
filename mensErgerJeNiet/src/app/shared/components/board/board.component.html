@@ -22,10 +22,10 @@
       <circle [attr.cx]="10*board.positions[player.startPosition].x" [attr.cy]="10*board.positions[player.startPosition].y" r="3"
               stroke-width="0" stroke="none" [attr.fill]="player.colorString" />
       <ng-container *ngFor="let pawn of player.thePawns">
-        <use *ngIf="pawn.currentPosition >= 0"
+        <use *ngIf="pawn.currentPositionIndex >= 0"
              xlink:href="#pawnSymbol"
-             [attr.x]="10*board.positions[pawn.currentPosition].x"
-             [attr.y]="10*board.positions[pawn.currentPosition].y"
+             [attr.x]="10*board.positions[pawn.currentPositionIndex].x"
+             [attr.y]="10*board.positions[pawn.currentPositionIndex].y"
              width="10"
              stroke="black" [attr.fill]="player.colorString"
              (click)="onPawnClick(pawn)"

@@ -49,7 +49,7 @@ export class BoardComponent implements OnInit {
 
   onPawnClick(pawn: Pawn) {
     if (this.board.latestDiceResult > 0 && pawn.player == this.playerWithTurn) {
-      pawn.currentPosition = (pawn.currentPosition + this.board.latestDiceResult) % this.board.trackLength;
+      pawn.currentPositionIndex = (pawn.currentPositionIndex + this.board.latestDiceResult) % this.board.trackLength;
       this.board.nextTurn();
     }
   }

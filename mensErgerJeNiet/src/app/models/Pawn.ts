@@ -2,7 +2,7 @@ import {Player} from "./Player";
 
 export class Pawn {
   player: Player;             // this is the player owning the pawn
-  currentPosition: number;    // this is the index in the board positions array where this pawn currently is located
+  currentPositionIndex: number;    // this is the index in the board positions array where this pawn currently is located
                               // -1 if the pawn is not on the board (yet)
   width: number;              // please remove or add a comment what is the purpose of this attribute
                               // view related scaling of visuals should not be in a model class
@@ -19,7 +19,7 @@ export class Pawn {
 
   constructor(config?, player?) {
     this.player = player;
-    this.currentPosition = -1;
+    this.currentPositionIndex = -1;
 
     // below code should be removed; their should be not html info in attributes of a model classes
     if (config != null) {
