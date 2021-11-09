@@ -1,5 +1,45 @@
-<div class="canvas">
-  <div class = "game-board">
+<div *ngIf="board?.players.length > 0; else noPlayers">
+  <h3>{{previousTurnMessage}}</h3>
+  <h2>Player <span [ngClass]="'name-'+playerWithTurn.colorString">{{playerWithTurn.name}}</span> has the turn.</h2>
+  <button [disabled]="board.latestDiceResult > 0" (click)="onRollDice()">Roll the dice</button>
+  <h4 *ngIf="board.latestDiceResult == 0; else moveThePawn">Please roll the dice...</h4>
+  <ng-template #moveThePawn>
+    <h4>You have rolled {{board.latestDiceResult}}; Please click a pawn to move forward...</h4>
+  </ng-template>
+  <svg *ngIf="board != null"
+       width = "100%"
+       [attr.viewBox]='"-10 -10 " + 10*(viewPortDimension+2) + " " + 10*(viewPortDimension+2)' preserveAspectRatio="xMidYMin">
+    <symbol id="pawnSymbol" width="12" height="20" x="-6" y="-15"
+            stroke-width="1" fill="solid">
+      <ellipse cx="6" cy="13" rx="4" ry="6"/>
+      <circle cx="6" cy="6" r="3"/>
+    </symbol>
+    <circle *ngFor="let position of board.positions; let i = index" [id]="'pos-'+i"
+            [attr.cx]="10*position.x" [attr.cy]="10*position.y" r="5"
+            stroke-width="2" stroke="black" fill="white"
+            (click)="onPositionClick(position)" />
+    <ng-container *ngFor="let player of board.players">
+      <circle [attr.cx]="10*board.positions[player.startPosition].x" [attr.cy]="10*board.positions[player.startPosition].y" r="3"
+              stroke-width="0" stroke="none" [attr.fill]="player.colorString" />
+      <ng-container *ngFor="let pawn of player.thePawns">
+        <use *ngIf="pawn.currentPosition >= 0"
+             xlink:href="#pawnSymbol"
+             [attr.x]="10*board.positions[pawn.currentPosition].x"
+             [attr.y]="10*board.positions[pawn.currentPosition].y"
+             width="10"
+             stroke="black" [attr.fill]="player.colorString"
+             (click)="onPawnClick(pawn)"
+        />
+      </ng-container>
+    </ng-container>
+  </svg>
+  <button>Roll</button>
+</div>
+<ng-template #noPlayers>
+  <p>Select a game with active players</p>
+</ng-template>
+<div *ngIf="false" class="canvas">
+  <div class="game-board">
     <div class="box-red" id="box1"></div>
     <div class="box-red" id="box2"></div>
     <div class="box-red" id="box3"></div>
@@ -21,7 +61,7 @@
     <div class="box-red" id="box19"></div>
     <div class="box-red" id="box20"></div>
     <div class="box-red" id="box21"></div>
-    <div class="box-red"id="box22"></div>
+    <div class="box-red" id="box22"></div>
     <div class="box-red" id="box23"></div>
     <div class="box-red" id="box24"></div>
     <div class="box" id="box25"></div>
@@ -142,7 +182,7 @@
     <div class="box-red-path" id="box140"></div>
     <div class="box-red-path" id="box141"></div>
     <div class="box-red-path" id="box142"></div>
-    <div class="box-red-path"id="box143"></div>
+    <div class="box-red-path" id="box143"></div>
     <div class="box-purple-finish" id="box144"></div>
     <div class="box-purple-finish" id="box145"></div>
     <div class="box-purple-finish" id="box146"></div>
@@ -154,7 +194,7 @@
     <div class="box-green-path" id="box152"></div>
     <div class="box" id="box153"></div>
     <div class="box" id="box154"></div>
-    <div class="box"id="box155"></div>
+    <div class="box" id="box155"></div>
     <div class="box" id="box156"></div>
     <div class="box" id="box157"></div>
     <div class="box" id="box158"></div>
@@ -251,7 +291,7 @@
     <div class="box-green" id="box249"></div>
     <div class="box-green" id="box250"></div>
     <div class="box-green" id="box251"></div>
-    <div class="box-green"id="box252"></div>
+    <div class="box-green" id="box252"></div>
     <div class="box-green" id="box253"></div>
     <div class="box-green" id="box254"></div>
     <div class="box-green" id="box255"></div>
@@ -267,8 +307,8 @@
     <div class="box" id="box265"></div>
     <div class="box-green" id="box266"></div>
     <div class="box-green" id="box267"></div>
-    <div class="box-green" id="box268" ></div>
-    <div class="box-green"  id="box269" ></div>
+    <div class="box-green" id="box268"></div>
+    <div class="box-green" id="box269"></div>
     <div class="box-green" id="box270"></div>
     <div class="box-green" id="box271"></div>
     <div class="box-green" id="box272"></div>
