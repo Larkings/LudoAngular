@@ -4,7 +4,7 @@ import {Dice} from "../../../models/Dice";
 import {Pawn} from "../../../models/Pawn";
 import {Player} from "../../../models/Player";
 import {Color} from "../../../models/Color.enum";
-import {Position} from "../../../models/Position";
+import {Position} from "./Position";
 
 @Component({
   selector: 'app-board',
@@ -12,24 +12,26 @@ import {Position} from "../../../models/Position";
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent implements OnInit {
-  private static DIMENSION = 6;
+  private static TRACK_LENGTH = 5;
+  private static TRACK_WIDTH = 2;
 
   public board: Board;
   public previousTurnMessage: string = null;
   public dice: Dice;    // only temporarily here, should be in backend only
 
-  get positions() {
-    return this.board.positions;
-  }
-  get viewPortDimension() { return 2*BoardComponent.DIMENSION+4; }
+  // list of view coordinates for the trackpositions on the board
+  public positions: Position[];
+
+  get viewPortDimension() { return 2*BoardComponent.TRACK_LENGTH+BoardComponent.TRACK_WIDTH+2; }
 
   get playerWithTurn(): Player {
     return this.board?.playerWithTurn;
   }
 
   constructor() {
-    this.board = new Board(BoardComponent.DIMENSION);
+    this.board = new Board(BoardComponent.TRACK_LENGTH, BoardComponent.TRACK_WIDTH);
     this.dice = new Dice();
+    this.setupPositions(BoardComponent.TRACK_LENGTH, BoardComponent.TRACK_WIDTH)
 
   }
 
@@ -49,7 +51,7 @@ export class BoardComponent implements OnInit {
 
   onPawnClick(pawn: Pawn) {
     if (this.board.latestDiceResult > 0 && pawn.player == this.playerWithTurn) {
-      pawn.currentPositionIndex = (pawn.currentPositionIndex + this.board.latestDiceResult) % this.board.trackLength;
+      pawn.currentPositionIndex = (pawn.currentPositionIndex + this.board.latestDiceResult) % this.board.totalTrackLength;
       this.board.nextTurn();
     }
   }
@@ -67,6 +69,37 @@ export class BoardComponent implements OnInit {
         this.board.nextTurn();
     }
     return;
+  }
+
+  private setupPositions(dimension: number, width: number) {
+    let trackLength = 8*dimension + 4*width;
+    this.positions = new Array<Position>(trackLength);
+    // configure 8 straight track parts of size dimension
+    for (let i = 0; i < dimension; i++) {
+      // from red starting point to the right and then up
+      this.positions[i] = new Position(1 + i, dimension + 1);
+      this.positions[dimension + i] = new Position(dimension + 1, dimension + 1 - i);
+      // from blue starting point downwards and then to the right
+      this.positions[2*dimension + width + i] = new Position(dimension + 1+width, 1 + i);
+      this.positions[3*dimension + width + i] = new Position(dimension + 1+width + i, dimension + 1);
+      // from green starting point to the left and then downwards
+      this.positions[4*dimension + 2*width + i] = new Position(2 * dimension + 1+width - i, dimension + 1+width);
+      this.positions[5*dimension + 2*width + i] = new Position(dimension + 1+width, dimension + 1+width + i);
+      // from orange starting point upward and then to the left
+      this.positions[6*dimension + 3*width + i] = new Position(dimension + 1, 2 * dimension + 1+width - i);
+      this.positions[7*dimension + 3*width + i] = new Position(dimension + 1 - i, dimension + 1+width);
+    }
+    // configure 4 track parts just before the home entrance
+    for (let i = 0; i < width; i++) {
+      // before red player entrance
+      this.positions[8 * dimension + 3*width + i] = new Position(1, dimension + 1+width - i)
+      // before blue player entrance
+      this.positions[2 * dimension + i] = new Position(dimension + 1 + i, 1);
+      // before green player entrance
+      this.positions[4 * dimension + width + i] = new Position(2 * dimension + 1+width, dimension + 1 + i);
+      // before orange player entrance
+      this.positions[6 * dimension + 2*width + i] = new Position(dimension + 1+width - i, 2 * dimension + 1+width);
+    }
   }
 
 }

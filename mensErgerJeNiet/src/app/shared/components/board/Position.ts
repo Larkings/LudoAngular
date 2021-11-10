@@ -1,5 +1,3 @@
-import {Pawn} from "./Pawn";
-
 export class Position {
   x: number;
   y: number;
