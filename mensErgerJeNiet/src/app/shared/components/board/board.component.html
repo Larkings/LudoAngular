@@ -2,19 +2,23 @@
   <svg *ngIf="board != null"
        width = "100%"
        [attr.viewBox]='"-10 -10 " + 10*(viewPortDimension+2) + " " + 10*(viewPortDimension+2)' preserveAspectRatio="xMidYMin">
+
     <symbol id="pawnSymbol" width="12" height="20" x="-6" y="-15"
             stroke-width="1" fill="solid">
       <ellipse cx="6" cy="13" rx="4" ry="6"/>
       <circle cx="6" cy="6" r="3"/>
     </symbol>
+<!--    this is the board + postion/coordinates (compelete board)-->
     <circle *ngFor="let position of positions; let i = index" [id]="'pos-'+i"
             [attr.cx]="10*position.x" [attr.cy]="10*position.y" r="5"
             stroke-width="2" stroke="black" fill="white"
             (click)="onPositionClick(position)" />
+
     <ng-container *ngFor="let player of board.players">
       <circle [attr.cx]="10*positions[player.startPosition].x" [attr.cy]="10*positions[player.startPosition].y" r="3"
               stroke-width="0" stroke="none" [attr.fill]="player.colorString" />
       <ng-container *ngFor="let pawn of player.thePawns">
+
         <use *ngIf="pawn.currentPositionIndex >= 0"
              xlink:href="#pawnSymbol"
              [attr.x]="10*positions[pawn.currentPositionIndex].x"

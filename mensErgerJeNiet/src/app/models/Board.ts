@@ -1,5 +1,7 @@
 import {Player} from "./Player";
-import {Position} from "../shared/components/board/Position";
+import { Position } from "./Position";
+
+
 
 export class Board {
 
