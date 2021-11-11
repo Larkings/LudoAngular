@@ -1,8 +1,10 @@
 <div *ngIf="board?.players.length > 0; else noPlayers">
+<!--  the hole game + board-->
   <svg *ngIf="board != null"
        width = "100%"
        [attr.viewBox]='"-10 -10 " + 10*(viewPortDimension+2) + " " + 10*(viewPortDimension+2)' preserveAspectRatio="xMidYMin">
 
+<!--Pawn object-->
     <symbol id="pawnSymbol" width="12" height="20" x="-6" y="-15"
             stroke-width="1" fill="solid">
       <ellipse cx="6" cy="13" rx="4" ry="6"/>
@@ -14,11 +16,13 @@
             stroke-width="2" stroke="black" fill="white"
             (click)="onPositionClick(position)" />
 
+<!-- home postion    -->
     <ng-container *ngFor="let player of board.players">
       <circle [attr.cx]="10*positions[player.startPosition].x" [attr.cy]="10*positions[player.startPosition].y" r="3"
               stroke-width="0" stroke="none" [attr.fill]="player.colorString" />
       <ng-container *ngFor="let pawn of player.thePawns">
 
+<!-- creates a pawn object and moves it on the board-->
         <use *ngIf="pawn.currentPositionIndex >= 0"
              xlink:href="#pawnSymbol"
              [attr.x]="10*positions[pawn.currentPositionIndex].x"
