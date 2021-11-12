@@ -10,14 +10,14 @@ export class Board {
   // track length of one player corner = dimension + 1 + dimension + 2    (excluding home positions)
   // total circular track length = 4 * track length of one player corner
   get totalTrackLength() {
+    // four players times ( 2 track-lengths + width)
     return 4 * (2 * this.trackLength + this.trackWidth);
   }
 
   players: Player[];
   public playerIndexWithTurn: number;   // the index of the player in the players array who has the turn
-  public positions: Position[];
 
-  public latestDiceResult: number;
+  public latestDiceResult: number;      // 0 indicates that playerWithTurn still has to throw the dice
 
   get playerWithTurn() {
     return this.players[this.playerIndexWithTurn];
@@ -25,6 +25,7 @@ export class Board {
 
   public nextTurn() {
     if (this.players.length == 0) return;
+    // give next turn circular...
     this.playerIndexWithTurn = (this.playerIndexWithTurn+1) % this.players.length;
     this.latestDiceResult = 0;
   }
@@ -46,7 +47,7 @@ export class Board {
 
   private startPositionOfPlayerIndex(playerIndex: number): number {
     // a player starts at the first position of the track in his corner
-    return playerIndex * (2 * this.trackLength + this.trackWidth);
+    return 1 + playerIndex * (2 * this.trackLength + this.trackWidth);
   }
 
   public addPlayer(player: Player) {

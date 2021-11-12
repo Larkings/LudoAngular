@@ -12,7 +12,7 @@ import {Position} from "./Position";
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent implements OnInit {
-  private static TRACK_LENGTH = 5;
+  private static TRACK_LENGTH = 7;
   private static TRACK_WIDTH = 2;
 
   public board: Board;
@@ -51,6 +51,7 @@ export class BoardComponent implements OnInit {
 
   onPawnClick(pawn: Pawn) {
     if (this.board.latestDiceResult > 0 && pawn.player == this.playerWithTurn) {
+      // check whether pawn has completed round, should not pass the start position again
       pawn.currentPositionIndex = (pawn.currentPositionIndex + this.board.latestDiceResult) % this.board.totalTrackLength;
       this.board.nextTurn();
     }
@@ -62,6 +63,7 @@ export class BoardComponent implements OnInit {
     this.previousTurnMessage = null;
     // this all should be done in the backend later
     if (this.board.latestDiceResult == 6 && this.board.placeAFreePawnAtStartPosition(this.playerWithTurn)) {
+      // also needs to check whether start position is free.
       this.board.latestDiceResult = 0;
       this.previousTurnMessage = `${this.playerWithTurn.name} has rolled 6; a new pawn has been placed at your start position`;
     } else if (this.playerWithTurn.numPawnsInPlay == 0) {
