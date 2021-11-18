@@ -4,6 +4,7 @@ import {BoardComponent} from "../shared/components/board/board.component";
 import {HomeComponent} from "../shared/components/home/home.component"
 
 const routes: Routes = [
+  {path: '',redirectTo: '/home', pathMatch: 'full'},
   {path: 'playgame', component: BoardComponent},
   {path: 'home', component: HomeComponent},
   // {path: 'settings', component: BoardComponent},
