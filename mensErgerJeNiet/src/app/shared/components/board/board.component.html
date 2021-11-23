@@ -1,28 +1,52 @@
-<div *ngIf="board?.players.length > 0; else noPlayers">
-<!--  the hole game + board-->
-  <svg *ngIf="board != null"
-       width = "100%"
-       [attr.viewBox]='"-10 -10 " + 10*(viewPortDimension+2) + " " + 10*(viewPortDimension+2)' preserveAspectRatio="xMidYMin">
 
-<!--Pawn object-->
+
+
+<div *ngIf="board?.players.length > 0; else noPlayers">
+<!--  the whole game + board-->
+
+
+
+
+  <svg *ngIf="board != null"
+       width = "50%"
+       [attr.viewBox]='"-10 -10 " + 10*(viewPortDimension+2) + " " + 10*(viewPortDimension+2)'
+       preserveAspectRatio="xMidYMin">
+
+
+
+
+<!--Pawn object?-->
     <symbol id="pawnSymbol" width="12" height="20" x="-6" y="-15"
             stroke-width="1" fill="solid">
-      <ellipse cx="6" cy="13" rx="4" ry="6"/>
-      <circle cx="6" cy="6" r="3"/>
+      <ellipse cx="6" cy="13" rx="4" ry="6" opacity="0.9"/>
+      <circle cx="6" cy="6" r="3" opacity="0.9"/>
     </symbol>
-<!--    this is the board + postion/coordinates (compelete board)-->
+
+    <!--//hier ergens moeten fixen om softlock op te lossen-->
+    <!-- this is the board + postion/coordinates (compelete board)-->
     <circle *ngFor="let position of positions; let i = index" [id]="'pos-'+i"
             [attr.cx]="10*position.x" [attr.cy]="10*position.y" r="5"
             stroke-width="2" stroke="black" fill="white"
             (click)="onPositionClick(position)" />
 
-<!-- home postion    -->
-    <ng-container *ngFor="let player of board.players">
+
+
+
+
+
+
+    <!-- home postion    -->
+    <ng-container *ngFor="let player of board.players"> <!--Voor alle spelers dus-->
+
+      <!--Startpositions-->
       <circle [attr.cx]="10*positions[player.startPosition].x" [attr.cy]="10*positions[player.startPosition].y" r="3"
               stroke-width="0" stroke="none" [attr.fill]="player.colorString" />
-      <ng-container *ngFor="let pawn of player.thePawns">
 
-<!-- creates a pawn object and moves it on the board-->
+
+      <ng-container *ngFor="let pawn of player.thePawns">
+        <!-- creates a pawn object and moves it on the board-->
+
+
         <use *ngIf="pawn.currentPositionIndex >= 0"
              xlink:href="#pawnSymbol"
              [attr.x]="10*positions[pawn.currentPositionIndex].x"
@@ -32,8 +56,126 @@
              (click)="onPawnClick(pawn)"
         />
       </ng-container>
+
+      <!--red-->
+
+  <ng-container *ngIf = " this.player.colorString == 'RED' ">
+
+
+      <circle *ngIf="this.player.numFreePawns == 4"
+        cx="10" cy="25"   r="5"
+        stroke-width="2" stroke="black" fill="red" opacity="100"
+      />
+
+
+
+    <circle *ngIf="this.player.numFreePawns < 4"
+              cx="10" cy="25"   r="5"
+              stroke-width="2" stroke="black" fill="red" opacity="0"
+
+    />
+<!--    <symbol id="pawnSymbol" width="12" height="20" x="-6" y="-15"
+            stroke-width="1" fill="solid">
+      <ellipse cx="10" cy="25" rx="4" ry="6" opacity="0.9"/>
+      <circle cx="10" cy="25" r="3" opacity="0.9"/>
+    </symbol>-->
+
+    <circle *ngIf="this.player.numFreePawns >= 3"
+      cx="20" cy="35"   r="5"
+      stroke-width="2" stroke="black" fill="red" opacity="100"/>
+
+    <circle *ngIf="this.player.numFreePawns < 3"
+            cx="20" cy="35"   r="5"
+            stroke-width="2" stroke="black" fill="red" opacity="0"/>
+
+    <circle *ngIf="this.player.numFreePawns >=2"
+      cx="30" cy="35"   r="5"
+      stroke-width="2" stroke="black" fill="red" opacity="100"/>
+
+    <circle *ngIf="this.player.numFreePawns < 2"
+            cx="30" cy="35"   r="5"
+            stroke-width="2" stroke="black" fill="red" opacity="0"/>
+
+    <circle *ngIf="this.player.numFreePawns >=1"
+      cx="40" cy="25"   r="5"
+      stroke-width="2" stroke="black" fill="red"/>
+
+    <circle *ngIf="this.player.numFreePawns < 1"
+            cx="40" cy="25"   r="5"
+            stroke-width="2" stroke="black" fill="red"/>
+
+  </ng-container>
+
+
+
+
+
+
+
+
+
+      <!--yellow-->
+
+      <ng-container>
+        <circle
+          cx="10" cy="115"   r="5"
+          stroke-width="2" stroke="black" fill="yellow"/>
+        <circle
+          cx="20" cy="105"   r="5"
+          stroke-width="2" stroke="black" fill="yellow"/>
+        <circle
+          cx="30" cy="105"   r="5"
+          stroke-width="2" stroke="black" fill="yellow"/>
+        <circle
+          cx="40" cy="115"   r="5"
+          stroke-width="2" stroke="black" fill="yellow"/>
+      </ng-container>
+
+      <!--blue-->
+
+      <ng-container>
+        <circle
+          cx="100" cy="25"   r="5"
+          stroke-width="2" stroke="black" fill="blue"/>
+        <circle
+          cx="110" cy="35"   r="5"
+          stroke-width="2" stroke="black" fill="blue"/>
+        <circle
+          cx="120" cy="35"   r="5"
+          stroke-width="2" stroke="black" fill="blue"/>
+        <circle
+          cx="130" cy="25"   r="5"
+          stroke-width="2" stroke="black" fill="blue"/>
+      </ng-container>
+
+      <!--green-->
+
+      <ng-container>
+        <circle
+          cx="100" cy="115"   r="5"
+          stroke-width="2" stroke="black" fill="green"/>
+        <circle
+          cx="110" cy="105"   r="5"
+          stroke-width="2" stroke="black" fill="green"/>
+        <circle
+          cx="120" cy="105"   r="5"
+          stroke-width="2" stroke="black" fill="green"/>
+        <circle
+          cx="130" cy="115"   r="5"
+          stroke-width="2" stroke="black" fill="green"/>
+      </ng-container>
+
     </ng-container>
+
   </svg>
+
+
+
+
+
+
+
+
   <div class="rollDiceInfo">
     <h3>{{previousTurnMessage}}</h3>
     <h2>Player <span [ngClass]="'name-'+playerWithTurn.colorString">{{playerWithTurn.name}}</span> has the turn.</h2>

@@ -1,3 +1,4 @@
+/*
 export class InPutHandler{
 
   constructor(pawn) {
@@ -13,3 +14,4 @@ export class InPutHandler{
   }
 
 }
+*/

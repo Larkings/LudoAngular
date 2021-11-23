@@ -5,7 +5,11 @@ export class Pawn {
   currentPositionIndex: number;    // this is the index in the board positions array where this pawn currently is located
                               // -1 if the pawn is not on the board (yet)
   width: number;              // please remove or add a comment what is the purpose of this attribute
-                              // view related scaling of visuals should not be in a model class
+
+
+
+
+/*                              // view related scaling of visuals should not be in a model class
   height: number;             // please remove or add a comment what is the purpose of this attribute
   x: number;                  // probably obsolete if you use a relative position index
   y: number;
@@ -15,21 +19,21 @@ export class Pawn {
   speed : number = 0          // please remove or add a comment what is the purpose of this attribute
   element: any;               // specific physical view info does not belong in a model class
   canvas: any;                // specific physical view info does not belong in a model class
-  ctx: any;                   // specific physical view info does not belong in a model class
+  ctx: any;         */          // specific physical view info does not belong in a model class
 
   constructor(config?, player?) {
     this.player = player;
     this.currentPositionIndex = -1;
 
-    // below code should be removed; their should be not html info in attributes of a model classes
+/*    // below code should be removed; their should be not html info in attributes of a model classes
     if (config != null) {
       this.element = config.element;
       this.canvas = this.element.querySelector("game-canvas")
       this.ctx = this.canvas.getContext("2d");
-    }
+    }*/
   }
 
-  // below code should be removed or changed such that the view canvas element comes in via a parameter.
+/*  // below code should be removed or changed such that the view canvas element comes in via a parameter.
   drawPawn(canvas?) {
     // let ctx = canvas.getContext("2d");
     this.ctx.beginPath();
@@ -39,7 +43,7 @@ export class Pawn {
       20, 0, Math.PI * 2, true);
     this.ctx.fillStyle = 'red';
     this.ctx.fill();
-  }
+  }*/
 }
 
 
