@@ -35,7 +35,6 @@ export class Player {
       // for now, calculate the pawn-id from the player-id.
       // will be done by back-end later
       this.thePawns[i] = new Pawn(null, this);
-      console.log("resetPawns - Player.ts")
     }
   }
 
@@ -64,6 +63,8 @@ export class Player {
     }
     return null;
     console.log("getFreePawn return null")
+    console.log("resetPawns - Player.ts " + this.resetPawns() )
+
   };
 
 

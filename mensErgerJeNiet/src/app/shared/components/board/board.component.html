@@ -57,7 +57,7 @@
         />
       </ng-container>
 
-      <!--red-->
+      <!--red///////////////////////////-->
 
   <ng-container *ngIf = " this.player.colorString == 'RED' ">
 
@@ -71,14 +71,7 @@
 
     <circle *ngIf="this.player.numFreePawns < 4"
               cx="10" cy="25"   r="5"
-              stroke-width="2" stroke="black" fill="red" opacity="0"
-
-    />
-<!--    <symbol id="pawnSymbol" width="12" height="20" x="-6" y="-15"
-            stroke-width="1" fill="solid">
-      <ellipse cx="10" cy="25" rx="4" ry="6" opacity="0.9"/>
-      <circle cx="10" cy="25" r="3" opacity="0.9"/>
-    </symbol>-->
+              stroke-width="2" stroke="black" fill="red" opacity="0"/>
 
     <circle *ngIf="this.player.numFreePawns >= 3"
       cx="20" cy="35"   r="5"
@@ -107,62 +100,117 @@
   </ng-container>
 
 
+      <!--yellow///////////////////////-->
 
+      <ng-container *ngIf = " this.player.colorString == 'YELLOW' ">
 
-
-
-
-
-
-      <!--yellow-->
-
-      <ng-container>
-        <circle
+        <circle *ngIf="this.player.numFreePawns == 4"
           cx="10" cy="115"   r="5"
-          stroke-width="2" stroke="black" fill="yellow"/>
-        <circle
+          stroke-width="2" stroke="black" fill="yellow" opacity="100"/>
+
+
+        <circle *ngIf="this.player.numFreePawns <4"
+                cx="10" cy="115"   r="5"
+                stroke-width="2" stroke="black" fill="yellow" opacity="0"/>
+
+        <circle *ngIf="this.player.numFreePawns >= 3"
           cx="20" cy="105"   r="5"
-          stroke-width="2" stroke="black" fill="yellow"/>
-        <circle
+          stroke-width="2" stroke="black" fill="yellow" opacity="100"/>
+
+        <circle *ngIf="this.player.numFreePawns < 3"
+                cx="20" cy="105"   r="5"
+                stroke-width="2" stroke="black" fill="yellow" opacity="0"/>
+
+        <circle *ngIf="this.player.numFreePawns >=2"
           cx="30" cy="105"   r="5"
-          stroke-width="2" stroke="black" fill="yellow"/>
-        <circle
+          stroke-width="2" stroke="black" fill="yellow" opacity="100"/>
+
+        <circle *ngIf="this.player.numFreePawns < 2"
+                cx="30" cy="105"   r="5"
+                stroke-width="2" stroke="black" fill="yellow" opacity="0"/>
+
+        <circle *ngIf="this.player.numFreePawns >=1"
           cx="40" cy="115"   r="5"
-          stroke-width="2" stroke="black" fill="yellow"/>
+          stroke-width="2" stroke="black" fill="yellow" opacity="100"/>
+
+        <circle *ngIf="this.player.numFreePawns < 1"
+                cx="40" cy="115"   r="5"
+                stroke-width="2" stroke="black" fill="yellow" opacity="0"/>
+
       </ng-container>
 
-      <!--blue-->
+      <ng-container *ngIf = " this.player.colorString == 'BLUE' ">
 
-      <ng-container>
-        <circle
+        <circle *ngIf="this.player.numFreePawns == 4"
           cx="100" cy="25"   r="5"
-          stroke-width="2" stroke="black" fill="blue"/>
-        <circle
+          stroke-width="2" stroke="black" fill="blue" opacity="100"/>
+
+        <circle *ngIf="this.player.numFreePawns < 4"
+        cx="100" cy="25"   r="5"
+        stroke-width="2" stroke="black" fill="blue" opacity="0"/>
+
+        <circle *ngIf="this.player.numFreePawns >= 3"
           cx="110" cy="35"   r="5"
-          stroke-width="2" stroke="black" fill="blue"/>
-        <circle
+          stroke-width="2" stroke="black" fill="blue" opacity="100"/>
+
+        <circle *ngIf="this.player.numFreePawns < 3"
+          cx="110" cy="35"   r="5"
+          stroke-width="2" stroke="black" fill="blue" opacity="0"/>
+
+        <circle *ngIf="this.player.numFreePawns >= 2"
           cx="120" cy="35"   r="5"
-          stroke-width="2" stroke="black" fill="blue"/>
-        <circle
+          stroke-width="2" stroke="black" fill="blue" opacity="100"/>
+
+        <circle *ngIf="this.player.numFreePawns < 2"
+          cx="120" cy="35"   r="5"
+          stroke-width="2" stroke="black" fill="blue" opacity="0"/>
+
+        <circle *ngIf="this.player.numFreePawns >= 1"
           cx="130" cy="25"   r="5"
-          stroke-width="2" stroke="black" fill="blue"/>
+          stroke-width="2" stroke="black" fill="blue" opacity="100"/>
+
+        <circle *ngIf="this.player.numFreePawns < 1"
+          cx="130" cy="25"   r="5"
+          stroke-width="2" stroke="black" fill="blue" opacity="0"/>
+
       </ng-container>
 
-      <!--green-->
 
-      <ng-container>
-        <circle
+      <ng-container *ngIf = " this.player.colorString == 'GREEN' ">
+
+        <circle *ngIf="this.player.numFreePawns == 4"
           cx="100" cy="115"   r="5"
-          stroke-width="2" stroke="black" fill="green"/>
-        <circle
+          stroke-width="2" stroke="black" fill="green" opacity="100"/>
+
+        <circle *ngIf="this.player.numFreePawns < 4"
+          cx="100" cy="115"   r="5"
+          stroke-width="2" stroke="black" fill="green" opacity="0"/>
+
+        <circle *ngIf="this.player.numFreePawns >= 3"
           cx="110" cy="105"   r="5"
-          stroke-width="2" stroke="black" fill="green"/>
-        <circle
+          stroke-width="2" stroke="black" fill="green" opacity="100"/>
+
+        <circle *ngIf="this.player.numFreePawns < 3"
+          cx="110" cy="105"   r="5"
+          stroke-width="2" stroke="black" fill="green" opacity="0"/>
+
+        <circle *ngIf="this.player.numFreePawns >=2"
           cx="120" cy="105"   r="5"
-          stroke-width="2" stroke="black" fill="green"/>
-        <circle
+          stroke-width="2" stroke="black" fill="green" opacity="100"/>
+
+        <circle *ngIf="this.player.numFreePawns < 2"
+                cx="120" cy="105"   r="5"
+                stroke-width="2" stroke="black" fill="green" opacity="0"/>
+
+        <circle *ngIf="this.player.numFreePawns >=1"
           cx="130" cy="115"   r="5"
-          stroke-width="2" stroke="black" fill="green"/>
+          stroke-width="2" stroke="black" fill="green" opacity="100"/>
+
+        <circle *ngIf="this.player.numFreePawns < 1"
+                cx="130" cy="115"   r="5"
+                stroke-width="2" stroke="black" fill="green" opacity="0"/>
+
+
       </ng-container>
 
     </ng-container>

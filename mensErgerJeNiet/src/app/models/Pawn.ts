@@ -9,6 +9,7 @@ export class Pawn {
 
 
 
+
 /*                              // view related scaling of visuals should not be in a model class
   height: number;             // please remove or add a comment what is the purpose of this attribute
   x: number;                  // probably obsolete if you use a relative position index
