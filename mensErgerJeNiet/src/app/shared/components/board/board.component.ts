@@ -4,7 +4,8 @@ import {Dice} from "../../../models/Dice";
 import {Pawn} from "../../../models/Pawn";
 import {Player} from "../../../models/Player";
 import {Color} from "../../../models/Color.enum";
-import {Position} from "./Position";
+import { Position } from 'src/app/models/Position';
+
 
 @Component({
   selector: 'app-board',
