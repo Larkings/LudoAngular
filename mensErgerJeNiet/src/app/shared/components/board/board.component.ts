@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Board} from "../../../models/Board";
+import {Home} from "../../../models/Home";
 import {Dice} from "../../../models/Dice";
 import {Pawn} from "../../../models/Pawn";
 import {Player} from "../../../models/Player";
@@ -14,10 +15,16 @@ import { Position } from 'src/app/models/Position';
 })
 export class BoardComponent implements OnInit {
   private static TRACK_LENGTH = 5;
-  private static TRACK_WIDTH = 2;
+  private static TRACK_WIDTH =2;
+  ///////////////////////////
+/*
+  private static TRACK_BASE_L = 1;
+  private static TRACK_BASE_W = 0;
+*/
 
   public board: Board;
   public previousTurnMessage: string = null;
+  public home: Home;
   public dice: Dice;    // only temporarily here, should be in backend only
   public nextPlayer: boolean = true;
   public nextPositionIndex: number = 0;
@@ -41,18 +48,18 @@ export class BoardComponent implements OnInit {
   constructor() {
     this.board = new Board(BoardComponent.TRACK_LENGTH, BoardComponent.TRACK_WIDTH);
     this.dice = new Dice();
-    this.setupPositions(BoardComponent.TRACK_LENGTH, BoardComponent.TRACK_WIDTH)
-
+    this.setupPositions(BoardComponent.TRACK_LENGTH, BoardComponent.TRACK_WIDTH);
+/*    this.setupHomeBase(BoardComponent.TRACK_BASE_L, BoardComponent.TRACK_BASE_W);*/
   }
 
 
   ngOnInit(): void {
     // for now we don't use the id-s yet.
     // That will become relevant when syncing with backend, and tracking multiple games.
-    this.board.addPlayer(new Player(0, "Bao", Color.RED));
-    this.board.addPlayer(new Player(0, "Jorden", Color.BLUE));
-    this.board.addPlayer(new Player(0, "Kevin", Color.GREEN));
-    this.board.addPlayer(new Player(0, "Lloyd", Color.YELLOW));
+    this.board.addPlayer( new Player(1,"Bao",Color.RED));
+    this.board.addPlayer(new Player(2,"Jorden",Color.BLUE));
+    this.board.addPlayer(new Player(3,"Kevin",Color.GREEN));
+    this.board.addPlayer(new Player(4,"Lloyd",Color.YELLOW));
   }
 
   onPositionClick(position: Position) {
@@ -64,6 +71,7 @@ export class BoardComponent implements OnInit {
       return true
     } else return false;
   }
+
 
   onPawnClick(pawn: Pawn) {
     this.nextPositionIndex = (pawn.currentPositionIndex + this.board.latestDiceResult) % this.board.totalTrackLength;
@@ -191,20 +199,38 @@ export class BoardComponent implements OnInit {
     let trackLength = 8*dimension + 4*width;
     this.positions = new Array<Position>(trackLength);
     // configure 8 straight track parts of size dimension
+
+
+
     for (let i = 0; i < dimension; i++) {
+
       // from red starting point to the right and then up
+
       this.positions[i] = new Position(1 + i, dimension + 1);
       this.positions[dimension + i] = new Position(dimension + 1, dimension + 1 - i);
+
+
+
+
       // from blue starting point downwards and then to the right
+
       this.positions[2*dimension + width + i] = new Position(dimension + 1+width, 1 + i);
       this.positions[3*dimension + width + i] = new Position(dimension + 1+width + i, dimension + 1);
+
       // from green starting point to the left and then downwards
+
       this.positions[4*dimension + 2*width + i] = new Position(2 * dimension + 1+width - i, dimension + 1+width);
       this.positions[5*dimension + 2*width + i] = new Position(dimension + 1+width, dimension + 1+width + i);
+
       // from orange starting point upward and then to the left
+
       this.positions[6*dimension + 3*width + i] = new Position(dimension + 1, 2 * dimension + 1+width - i);
       this.positions[7*dimension + 3*width + i] = new Position(dimension + 1 - i, dimension + 1+width);
+
     }
+
+
+
     // configure 4 track parts just before the home entrance
     for (let i = 0; i < width; i++) {
       // before red player entrance
@@ -217,5 +243,7 @@ export class BoardComponent implements OnInit {
       this.positions[6 * dimension + 2*width + i] = new Position(dimension + 1+width - i, 2 * dimension + 1+width);
     }
   }
+
+
 
 }
