@@ -6,7 +6,6 @@ export class Player {
   public name: string;
   public color: Color;
   public startPosition: number;
-  public pawns: number[][];   // replace by thePawns below: true references to pawn objects
   public thePawns: Pawn[];
 
 
@@ -33,7 +32,7 @@ export class Player {
     for (let i = 0; i < 4; i++) {
       // for now, calculate the pawn-id from the player-id.
       // will be done by back-end later
-      this.thePawns[i] = new Pawn(null, this);
+      this.thePawns[i] = new Pawn(this);
     }
   }
 

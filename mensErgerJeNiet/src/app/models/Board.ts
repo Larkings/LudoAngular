@@ -16,17 +16,24 @@ export class Board {
   players: Player[];
   public playerIndexWithTurn: number;   // the index of the player in the players array who has the turn
   public positions: Position[];
-
   public latestDiceResult: number;
+
 
   get playerWithTurn() {
     return this.players[this.playerIndexWithTurn];
   }
 
-  public nextTurn() {
+  public nextTurn(nextPlayer: boolean) {
     if (this.players.length == 0) return;
-    this.playerIndexWithTurn = (this.playerIndexWithTurn+1) % this.players.length;
-    this.latestDiceResult = 0;
+    if (nextPlayer){
+      this.playerIndexWithTurn = (this.playerIndexWithTurn+1) % this.players.length;
+      this.latestDiceResult = 0;
+    }
+    else{
+      this.playerIndexWithTurn = (this.playerIndexWithTurn) % this.players.length;
+      this.latestDiceResult = 0;
+    }
+
   }
 
   public placeAFreePawnAtStartPosition(player: Player): boolean {
@@ -53,4 +60,11 @@ export class Board {
     player.startPosition = this.startPositionOfPlayerIndex(this.players.length);
     this.players.push(player);
   }
+
+  //method to remove pawn when killed
+
+  public killPawn(){
+
+  }
 }
+
