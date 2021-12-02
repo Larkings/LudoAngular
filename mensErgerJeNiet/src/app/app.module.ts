@@ -8,26 +8,36 @@ import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './modules/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AgGridModule} from "ag-grid-angular";
+import {MatDialogModule} from "@angular/material/dialog";
+import { ModalTextComponent } from './shared/components/modal-text/modal-text.component';
+import { HomeTextComponent } from './shared/components/home-text/home-text.component';
+
 
 
 
 @NgModule({
-  declarations: [
-AppComponent
-  ],
+    declarations: [
+        AppComponent,
+        ModalTextComponent,
+        HomeTextComponent
+    ],
   imports: [
     AuthModule,
-    SharedModule,
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    AgGridModule.withComponents([])
-
+    MatDialogModule,
+    AgGridModule.withComponents([]),
+    SharedModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+    providers: [],
+  exports: [
+    HomeTextComponent,
+    HomeTextComponent
+  ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

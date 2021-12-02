@@ -7,9 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+constructor(public modalService: ModalService) {}
 
-  ngOnInit(): void {
-  }
+ngOnInit(): void {}
 
 }

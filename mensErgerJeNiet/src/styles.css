@@ -6,21 +6,11 @@ html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  /*background-image: url("./assets/images/background.png");*/
-  /*background-repeat: no-repeat;*/
-  /*background-attachment: fixed;*/
-  /*background-position: center;*/
-
-
-
-
- }
-
-/*.bg-image{*/
-/*  !* Add the blur effect *!*/
-/*  filter: blur(8px);*/
-/*  -webkit-filter: blur(8px);*/
-/*}*/
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
 
 
 .alert div {

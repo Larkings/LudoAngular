@@ -14,6 +14,7 @@ import {Test2dComponent} from "../shared/components/test2d/test2d.component";
 import { BoardComponent} from "../shared/components/board/board.component";
 
 
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -25,14 +26,13 @@ import { BoardComponent} from "../shared/components/board/board.component";
     GamesetupComponent,
     DiceComponent,
     Test2dComponent
-
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    RouterModule,
-    FlexLayoutModule
-  ],
+    imports: [
+        CommonModule,
+        MaterialModule,
+        RouterModule,
+        FlexLayoutModule,
+    ],
   exports: [
      ColumnOneComponent
   ]
