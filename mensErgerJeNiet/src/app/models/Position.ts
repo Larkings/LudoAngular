@@ -1,4 +1,5 @@
-import {Pawn} from "./Pawn";
+import { Pawn } from "./Pawn";
+
 
 export class Position {
   pawn: Pawn;

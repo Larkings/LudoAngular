@@ -1,3 +1,4 @@
+/*
 export class Game {
   element: any;
   canvas: any;
@@ -17,3 +18,4 @@ export class Game {
   }
 }
 
+*/
