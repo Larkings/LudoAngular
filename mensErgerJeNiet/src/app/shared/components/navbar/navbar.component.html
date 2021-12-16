@@ -5,14 +5,14 @@
   <button mat-raised-button routerLink="/home">Home</button>
   <button mat-raised-button routerLink="/playgame">Play Game</button>
   <button mat-raised-button routerLink="'#about'">About us</button>
-  <button
+  <!--<button
     mat-raised-button
     aria-current="page"
     class="active"
     [routerLink]="['register']" routerLinkActive="active"
   >
     Register
-  </button>
+  </button> -->
 
   <button
     mat-raised-button
@@ -20,11 +20,11 @@
     class=" active"
     [routerLink]="['login']" routerLinkActive="active"
   >
-    Log In
+    Log In/ Register
   </button>
 
 
-  <button
+ <!-- <button
     mat-raised-button
     aria-current="page"
     class=" active"
@@ -32,7 +32,7 @@
   >
     Reset Password
   </button>
-
+-->
   <button mat-button class="help" (click)="modalService.openDialog()">
     <mat-icon> help </mat-icon>
   </button>

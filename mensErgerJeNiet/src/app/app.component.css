@@ -8,3 +8,7 @@ body {
   background-position: center;
   background-size: cover;
 }
+
+.container{
+  padding-top: 50px;
+}

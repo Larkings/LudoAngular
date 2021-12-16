@@ -31,7 +31,7 @@
                 <mat-label>User Name</mat-label>
                 <input matInput required placeholder="exp. BlackJack112" />
               </mat-form-field>
-              
+
               <mat-form-field class="register-full-width">
                 <mat-label>Email Address</mat-label>
                 <input
@@ -90,6 +90,11 @@
             <button [disabled]="confirmRegister.invalid" mat-stroked-button color="accent" class="btn-block">
               Register <mat-icon>register</mat-icon>
             </button>
+            <a class="register-form first" [routerLink]="['/login']"
+            >Nevermind, Login</a>
+
+            <a class="register-form" [routerLink]="['/reset-password']"
+            >Forgot password</a>
           </form>
         </mat-card>
       </div>

@@ -47,11 +47,17 @@
   -ms-transform: scale(.95);
   z-index: -1;
 }
-
-.login-wrapper .login-form {
+.login-wrapper .login-form{
   min-width: 100%;
   max-width: 300px;
   width: 100%;
+}
+
+.login-wrapper .login-form .first{
+  min-width: 100%;
+  max-width: 300px;
+  width: 100%;
+  padding-right: 310px;
 }
 
 .login-wrapper .login-full-width,

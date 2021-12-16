@@ -83,3 +83,10 @@
 .register-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em 0;
 }
+
+.register-wrapper .register-form .first{
+  min-width: 100%;
+  max-width: 300px;
+  width: 100%;
+  padding-right: 260px;
+}
