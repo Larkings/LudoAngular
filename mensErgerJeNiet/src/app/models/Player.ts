@@ -4,6 +4,7 @@ import {Pawn} from "./Pawn";
 export class Player {
   public id: number;          // global player-id, shall be unique across the system
   public name: string;
+  public playerNum: string;
   public color: Color;
   public startPosition: number;
   public thePawns: Pawn[];
@@ -16,6 +17,7 @@ export class Player {
               id?: number,
               name?: string,
               color?: Color,
+              playerNum?: string,
               pawns?: number[][],
               isNext?: boolean,
               isWinner?: boolean
@@ -23,6 +25,7 @@ export class Player {
     this.id = id;
     this.name = name;
     this.color = color;
+    this.playerNum= playerNum;
     this.thePawns = new Array<Pawn>(4)
     this.resetPawns();
   }

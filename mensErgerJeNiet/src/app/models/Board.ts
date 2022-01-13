@@ -14,7 +14,7 @@ export class Board {
   // total circular track length = 4 * track length of one player corner
   get totalTrackLength() {
     return 4 * (2 * this.trackLength + this.trackWidth);
-  }//komt terug in board.component.ts, veranderd alleen niet veel als ik het veranderd
+  }
 
   players: Player[];
   public playerIndexWithTurn: number;   // the index of the player in the players array who has the turn
@@ -58,7 +58,9 @@ export class Board {
 
 
   constructor(trackLength: number, trackWidth: number) {
-    this.trackLength = trackLength; //veranderd dit en dan veranderd de homebases
+/*    trackLength = 100;
+    trackWidth = 100;*/
+    this.trackLength = trackLength;
     this.trackWidth = trackWidth;
     this.players = [];
     this.playerIndexWithTurn = 0;

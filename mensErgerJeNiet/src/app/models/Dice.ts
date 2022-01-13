@@ -11,12 +11,12 @@ export class Dice {
    * roll dice and returns a random integer number between 1-6
    */
   public static rollDice(): number {
-    let result = getRandomInt(1, 7);
+    let result = getRandomInt(5, 7);
     return result;
   }
 
   public roll() {
-    this.previousResult = getRandomInt(1, 7);
+    this.previousResult = getRandomInt(5, 7);
     return this.previousResult;
   }
 
