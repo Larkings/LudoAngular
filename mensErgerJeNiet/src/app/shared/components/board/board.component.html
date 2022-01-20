@@ -22,8 +22,10 @@
             stroke-width="2" stroke="black" fill="white"
             (click)="onPositionClick(position)" />
 
-    <!--Winning Path-->
 
+
+      <!--Winning Path-->
+<ng-container>
     <!--BLACKDOT-->
     <circle
       cx="70" cy="70"   r="5"
@@ -41,26 +43,30 @@
       stroke="black"
       stroke-width="2"
     />
-    <!--RED // GREY -->
+    <!--END--RED // GREY -->
 
+<!--pos# 49 - first RED-->
     <circle
       cx="30" cy="70"   r="5"
       fill="red"
       stroke="black"
       stroke-width="2"
     />
+  <!--pos# 50 - first RED-->
     <circle
       cx="40" cy="70"   r="5"
       fill="red"
       stroke="black"
       stroke-width="2"
     />
+  <!--pos# 51 - first RED-->
     <circle
       cx="50" cy="70"   r="5"
       fill="red"
       stroke="black"
       stroke-width="2"
     />
+  <!--pos# 52 - first RED-->
     <circle
       cx="60" cy="70"   r="5"
       fill="red"
@@ -186,6 +192,9 @@
       stroke="black"
       stroke-width="2"
     />
+</ng-container>
+    <!--End Winning Path-->
+
 
     <!-- home postion    -->
     <ng-container *ngFor="let player of board.players"> <!--Voor alle spelers dus-->
@@ -197,8 +206,6 @@
 
       <ng-container *ngFor="let pawn of player.thePawns">
         <!-- creates a pawn object and moves it on the board-->
-
-
         <use *ngIf="pawn.currentPositionIndex >= 0"
              xlink:href="#pawnSymbol"
              [attr.x]="10*positions[pawn.currentPositionIndex].x"
@@ -555,13 +562,6 @@
 
       </ng-container>
 
- <!--     <ng-container *ngFor="let pawn of player.thePawns">
-        <div *ngIf="pawn.currentPositionIndex == 1">
-          <use />
-        </div>
-        (
-
-      </ng-container>-->
 
     </ng-container>
   </svg>

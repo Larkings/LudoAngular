@@ -5,7 +5,8 @@ export class Position {
   pawn: Pawn;
   x: number;
   y: number;
-  hasPawn: boolean =false;
+  hasPawn: boolean = false;
+
 
   constructor(x: number, y: number) {
     this.x = x;

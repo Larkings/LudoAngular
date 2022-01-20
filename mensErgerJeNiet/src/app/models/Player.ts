@@ -10,6 +10,8 @@ export class Player {
   public thePawns: Pawn[];
 
 
+  public savedPawns: Pawn[];
+
   public isNext: boolean;     // tracking the turns is the responsibility of the board rather than of the player itself
   public isWinner: boolean;
 
@@ -28,6 +30,7 @@ export class Player {
     this.playerNum= playerNum;
     this.thePawns = new Array<Pawn>(4)
     this.resetPawns();
+    this.isWinner = false;
   }
 
   public get colorString() { return this.color.toString() }
@@ -37,6 +40,28 @@ export class Player {
       // for now, calculate the pawn-id from the player-id.
       // will be done by back-end later
       this.thePawns[i] = new Pawn(this);
+    }
+  }
+
+  public makeWinner(){
+    for (let pawn of this.thePawns){
+      if(pawn.clickable == false && pawn.saved == true){
+        this.thePawns.map(pawn =>
+        {
+          return {
+            clickable: pawn.clickable,
+            saved: pawn.saved,
+            player: pawn.player,
+            currentPositionIndex: pawn.currentPositionIndex,
+            nextPositionIndex: pawn.nextPositionIndex
+          }
+        }).forEach(pawn => this.savedPawns.push(pawn));
+        console.log("//savedPawn Array List");
+        console.log(this.savedPawns);
+      }
+      if (this.savedPawns.length == 4){
+        this.isWinner = true;
+      }
     }
   }
 
