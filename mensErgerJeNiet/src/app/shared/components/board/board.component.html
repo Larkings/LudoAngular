@@ -10,11 +10,12 @@
 
 
 <!--Pawn object?-->
-    <symbol id="pawnSymbol" width="12" height="20" x="-6" y="-15"
-            stroke-width="1" fill="solid">
-      <ellipse cx="6" cy="13" rx="4" ry="6" opacity="0.9"/>
-      <circle cx="6" cy="6" r="3" opacity="0.9"/>
-    </symbol>
+
+        <symbol  id="pawnSymbol" width="12" height="20" x="-6" y="-15"
+                stroke-width="1" fill="solid">
+          <ellipse cx="6" cy="13" rx="4" ry="6" opacity="0.9"/>
+          <circle cx="6" cy="6" r="3" opacity="0.9"/>
+        </symbol>
 
     <!-- this is the board + postion/coordinates (compelete board)-->
     <circle *ngFor="let position of positions; let i = index" [id]="'pos-'+i"

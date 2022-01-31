@@ -41,6 +41,7 @@ export class BoardComponent implements OnInit {
   public winningPathBlue: Position[];
   public winningPathGreen: Position[];
   public winningPathYellow: Position[];
+  public savedPawns: Pawn[];
 
   get viewPortDimension() {
     return 2 * BoardComponent.TRACK_LENGTH + BoardComponent.TRACK_WIDTH + 2;
@@ -63,9 +64,9 @@ export class BoardComponent implements OnInit {
     // for now we don't use the id-s yet.
     // That will become relevant when syncing with backend, and tracking multiple games.
     this.board.addPlayer(new Player(1,"Bao",Color.RED));
-/*    this.board.addPlayer(new Player(2,"Jorden",Color.BLUE));
+    this.board.addPlayer(new Player(2,"Jorden",Color.BLUE));
     this.board.addPlayer(new Player(3,"Kevin",Color.GREEN));
-    this.board.addPlayer(new Player(4,"Lloyd",Color.YELLOW));*/
+    this.board.addPlayer(new Player(4,"Lloyd",Color.YELLOW));
   }
 
   onPositionClick(position: Position) {
@@ -84,38 +85,14 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  TESTERMOVEPAWN(pawnRed: Pawn){
-    if (pawnRed.player.color === "RED" && pawnRed.currentPositionIndex == 6){
-      this.positions[6].hasPawn = false;
-      this.positions[6].pawn = null;
-      pawnRed.currentPositionIndex = 36;
-      this.positions[36].hasPawn = false;
-      this.positions[36].pawn = null;
-      console.log("WINNINGPATH TEST QUE "+ "COLOR TEST: " )
-      console.log(this.positions[1]);
-      console.log(this.positions[2]);
-      console.log(this.positions[5]);
-      console.log(this.positions[36]);
-      console.log(this.positions[40]);
-      console.log(this.positions[45]);
-      console.log(this.positions[52]);
-      console.log("SHOW RED PATH ARRAY");
-      console.log(this.winningPathRed);
-      console.log(this.winningPathRed);
-      console.log("END TESTER")
+makeWinner(pawn){
+    if (pawn.player.color === "RED"&& pawn.player.thePawns.length ===0){
+      alert("Player with color " + pawn.player.color + " named " + '"'+ pawn.player.name + '"'+ " has won!");
+      if (confirm("Restart Game!")){
+        location.reload();
+      }
     }
-  }
-
-  checkIfPositionIsTrue(pawn: Pawn){
-    if(this.positions[52].hasPawn == true ){
-      this.path.redPathLockOne(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex);
-    }if (this.positions[52].hasPawn == true && this.positions[51].hasPawn == true){
-      this.path.redPathLockTwo(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex);
-    }if (this.positions[52].hasPawn == true && this.positions[51].hasPawn == true && this.positions[50].hasPawn == true ){
-      this.path.redPathLockThree(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex);
-    }
-  }
-
+}
 
   onPawnClick(pawn: Pawn) {
 /*    this.nextPositionIndex = (pawn.currentPositionIndex + this.board.latestDiceResult) % this.board.totalTrackLength;*/
@@ -129,7 +106,8 @@ export class BoardComponent implements OnInit {
     ) {
 
       console.log(pawn.player.name + " has selected pawn on position: " + pawn.currentPositionIndex);
-      console.log(pawn.player.name + " You can move your pawn to position : " + this.nextPositionIndex)
+      console.log(pawn.player.name + " You can move your pawn to position : " + this.nextPositionIndex);
+
 
       //old position has no pawn after move
       this.previousPositionIndex = pawn.currentPositionIndex;
@@ -147,25 +125,18 @@ export class BoardComponent implements OnInit {
       console.log(pawn.player.name + " has moved pawn to position:   " + pawn.currentPositionIndex);
       this.board.nextTurn(this.nextPlayer);
 
-/*      this.checkIfPositionIsTrue(this.winningPathRed);*/
-
-      /*      this.TESTERMOVEPAWN(pawn);*/
-
-
-      /*this.onWinningPathRed(pawn);*/
-/*      this.showAllPosInfo();*/
-
-      this.path.moveToPathRed(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex, this.dice.getDiceValue(), this.winningPathRed);
-/*      this.path.overflow(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex);*/
-/*      this.path.redPathLockOne(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex);
-      this.path.redPathLockTwo(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex);
-      this.path.redPathLockThree(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex);*/
-
+      this.path.overflow(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex,this.dice.getDiceValue());
+      this.path.lockPawnRed(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex);
+      this.path.lockPawnBlue(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex,this.dice.getDiceValue());
+      this.path.lockPawnGreen(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex,this.dice.getDiceValue());
+      this.path.lockPawnYellow(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex,this.dice.getDiceValue());
+      this.path.deletePawnBGY(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex);
+      this.makeWinner(pawn);
     }
     else{
 
-        if (pawn.player.color === "RED" && this.nextPositionIndex >= 47) {
-          this.path.moveToPathRed(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex, this.dice.getDiceValue(), this.winningPathRed);}
+   /*     if (pawn.player.color === "RED" && this.nextPositionIndex >= 47) {
+          this.path.moveToPathRed(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex, this.dice.getDiceValue(), this.winningPathRed);}*/
 
       //check if killable pawn is of same color on next position
 

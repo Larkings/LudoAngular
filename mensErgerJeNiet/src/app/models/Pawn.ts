@@ -7,6 +7,7 @@ export class Pawn {
   nextPositionIndex: number;
   clickable: boolean = true;
   saved: boolean = false;
+/*  borrow: boolean = false;*/
 
   constructor(player:Player) {
     this.player = player;
