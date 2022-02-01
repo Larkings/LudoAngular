@@ -12,6 +12,8 @@ export class Dice {
    */
   public static rollDice(): number {
     let result = getRandomInt(1, 7);
+    /*let result = getRandomInt(6, 7);*/
+
     return result;
   }
 

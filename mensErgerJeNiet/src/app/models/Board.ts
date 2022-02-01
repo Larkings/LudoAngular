@@ -12,9 +12,11 @@ export class Board {
   trackWidth: number;
   // track length of one player corner = dimension + 1 + dimension + 2    (excluding home positions)
   // total circular track length = 4 * track length of one player corner
+
+
   get totalTrackLength() {
     return 4 * (2 * this.trackLength + this.trackWidth);
-  }//komt terug in board.component.ts, veranderd alleen niet veel als ik het veranderd
+  }
 
   players: Player[];
   public playerIndexWithTurn: number;   // the index of the player in the players array who has the turn
@@ -23,7 +25,7 @@ export class Board {
 
 
   get playerWithTurn() {
-    return this.players[this.playerIndexWithTurn]; // een array met players er is een console.log
+    return this.players[this.playerIndexWithTurn];
     console.log(this.playerWithTurn);
     console.log(this.playerIndexWithTurn);
   }
@@ -41,29 +43,23 @@ export class Board {
 
   }
 
-  //dit zorgt ervoor dat een pion vrij komt voor een speler
-
   public placeAFreePawnAtStartPosition(player: Player): boolean {
     let freePawn = player.getFreePawn();
-    if (freePawn == null) return false; //heeft speler een vrije pion?
+    if (freePawn == null) return false;
     freePawn.currentPositionIndex = player.startPosition;
     console.log("placeAFreePawnAtStartPosition in Board.ts is nu werkzaam en heeft")
     return true;
 
   }
 
-  public testPawnAtHomeBase(player: Player){
-
-  }
-
 
   constructor(trackLength: number, trackWidth: number) {
-    this.trackLength = trackLength; //veranderd dit en dan veranderd de homebases
+    this.trackLength = trackLength;
     this.trackWidth = trackWidth;
     this.players = [];
     this.playerIndexWithTurn = 0;
     this.latestDiceResult = 0;
-  } // constructor van wat? De board dus?
+  }
 
   private startPositionOfPlayerIndex(playerIndex: number): number {
     // a player starts at the first position of the track in his corner
@@ -77,10 +73,6 @@ export class Board {
     console.log("addPlayer in board.ts heeft iets gedaan")
   }
 
-  //method to remove pawn when killed
 
-  public killPawn(){
-
-  }
 }
 
