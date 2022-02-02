@@ -12,16 +12,16 @@ export class Board {
   trackWidth: number;
   // track length of one player corner = dimension + 1 + dimension + 2    (excluding home positions)
   // total circular track length = 4 * track length of one player corner
-
+  players: Player[];
+  public playerIndexWithTurn: number;   // the index of the player in the players array who has the turn
+  public positions: Position[];
+  public latestDiceResult: number;
 
   get totalTrackLength() {
     return 4 * (2 * this.trackLength + this.trackWidth);
   }
 
-  players: Player[];
-  public playerIndexWithTurn: number;   // the index of the player in the players array who has the turn
-  public positions: Position[];
-  public latestDiceResult: number;
+
 
 
   get playerWithTurn() {

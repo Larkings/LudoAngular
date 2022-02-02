@@ -8,10 +8,7 @@ export class Player {
   public color: Color;
   public startPosition: number;
   public thePawns: Pawn[];
-
-
   public savedPawns: Pawn[];
-
   public isNext: boolean;     // tracking the turns is the responsibility of the board rather than of the player itself
   public isWinner: boolean;
 

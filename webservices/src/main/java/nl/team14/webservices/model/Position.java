@@ -1,9 +1,6 @@
 package nl.team14.webservices.model;
 
-
-
 import java.time.OffsetDateTime;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,14 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 
 
 @Entity
-public class Player {
+public class Position {
 
     @Id
     @Column(nullable = false, updatable = false)
@@ -36,29 +32,17 @@ public class Player {
     private Long id;
 
     @Column
-    private Long playerId;
+    private Integer x;
 
     @Column
-    private String name;
+    private Integer y;
 
     @Column
-    private String playerNumber;
-
-    @Column
-    private Integer startPosition;
-
-    @Column
-    private Boolean isNext;
-
-    @Column
-    private Boolean isWinner;
-
-    @OneToMany(mappedBy = "playerHasPawns")
-    private Set<Pawn> playerHasPawnsPawns;
+    private Boolean hasPawn;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "plays_on_id")
-    private Board playsOn;
+    @JoinColumn(name = "board_postions_id", nullable = false)
+    private Board boardPostions;
 
     @Column(nullable = false, updatable = false)
     private OffsetDateTime dateCreated;
@@ -85,68 +69,36 @@ public class Player {
         this.id = id;
     }
 
-    public Long getPlayerId() {
-        return playerId;
+    public Integer getX() {
+        return x;
     }
 
-    public void setPlayerId(final Long playerId) {
-        this.playerId = playerId;
+    public void setX(final Integer x) {
+        this.x = x;
     }
 
-    public String getName() {
-        return name;
+    public Integer getY() {
+        return y;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public void setY(final Integer y) {
+        this.y = y;
     }
 
-    public String getPlayerNumber() {
-        return playerNumber;
+    public Boolean getHasPawn() {
+        return hasPawn;
     }
 
-    public void setPlayerNumber(final String playerNumber) {
-        this.playerNumber = playerNumber;
+    public void setHasPawn(final Boolean hasPawn) {
+        this.hasPawn = hasPawn;
     }
 
-    public Integer getStartPosition() {
-        return startPosition;
+    public Board getBoardPostions() {
+        return boardPostions;
     }
 
-    public void setStartPosition(final Integer startPosition) {
-        this.startPosition = startPosition;
-    }
-
-    public Boolean getIsNext() {
-        return isNext;
-    }
-
-    public void setIsNext(final Boolean isNext) {
-        this.isNext = isNext;
-    }
-
-    public Boolean getIsWinner() {
-        return isWinner;
-    }
-
-    public void setIsWinner(final Boolean isWinner) {
-        this.isWinner = isWinner;
-    }
-
-    public Set<Pawn> getPlayerHasPawnsPawns() {
-        return playerHasPawnsPawns;
-    }
-
-    public void setPlayerHasPawnsPawns(final Set<Pawn> playerHasPawnsPawns) {
-        this.playerHasPawnsPawns = playerHasPawnsPawns;
-    }
-
-    public Board getPlaysOn() {
-        return playsOn;
-    }
-
-    public void setPlaysOn(final Board playsOn) {
-        this.playsOn = playsOn;
+    public void setBoardPostions(final Board boardPostions) {
+        this.boardPostions = boardPostions;
     }
 
     public OffsetDateTime getDateCreated() {
