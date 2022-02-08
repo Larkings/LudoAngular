@@ -8,7 +8,7 @@ export class Player {
   public color: Color;
   public startPosition: number;
   public thePawns: Pawn[];
-
+  public hasWon: number = 0;
 
   public savedPawns: Pawn[];
 
@@ -43,27 +43,7 @@ export class Player {
     }
   }
 
-  public makeWinner(){
-    for (let pawn of this.thePawns){
-      if(pawn.clickable == false && pawn.saved == true){
-        this.thePawns.map(pawn =>
-        {
-          return {
-            clickable: pawn.clickable,
-            saved: pawn.saved,
-            player: pawn.player,
-            currentPositionIndex: pawn.currentPositionIndex,
-            nextPositionIndex: pawn.nextPositionIndex
-          }
-        }).forEach(pawn => this.savedPawns.push(pawn));
-        console.log("//savedPawn Array List");
-        console.log(this.savedPawns);
-      }
-      if (this.savedPawns.length == 4){
-        this.isWinner = true;
-      }
-    }
-  }
+
 
   get numPawnsInPlay() {
     let num = 0;

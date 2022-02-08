@@ -16,11 +16,6 @@ import {Path} from "../../../models/Path";
 export class BoardComponent implements OnInit {
   private static TRACK_LENGTH = 5;
   private static TRACK_WIDTH =2;
-  ///////////////////////////
-/*
-  private static TRACK_BASE_L = 1;
-  private static TRACK_BASE_W = 0;
-*/
 
   public board: Board;
   public previousTurnMessage: string = null;
@@ -34,8 +29,10 @@ export class BoardComponent implements OnInit {
   public nextPosition: Position;
   public nextPositionHasOpponentPawn: boolean = false;
   public nextPositionHasSameColor: boolean = false;
-
-  // list of view coordinates for the trackpositions on the board
+  public pawnPlayingRed: Pawn[];
+  public pawnPlayingBlue: Pawn[];
+  public pawnPlayingGreen: Pawn[];
+  public pawnPlayingYellow: Pawn[];
   public positions: Position[];
   public winningPathRed: Position[];
   public winningPathBlue: Position[];
@@ -61,8 +58,6 @@ export class BoardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // for now we don't use the id-s yet.
-    // That will become relevant when syncing with backend, and tracking multiple games.
     this.board.addPlayer(new Player(1,"Bao",Color.RED));
     this.board.addPlayer(new Player(2,"Jorden",Color.BLUE));
     this.board.addPlayer(new Player(3,"Kevin",Color.GREEN));
@@ -85,21 +80,51 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  showAllHasPawn(){
+    for(let i = 0;i<=this.positions.length;i++){
+      if(this.positions[i].hasPawn == true){
+        console.log(this.positions[i]);
+      }
+    }
+  }
+
+  pawnInGameArray(pawn: Pawn){
+    if(pawn.player.color === "RED" && pawn.currentPositionIndex >=0){
+      this.pawnPlayingRed.push(pawn);
+      console.log(this.pawnPlayingRed);
+    }
+    if(pawn.player.color === "BLUE" && pawn.currentPositionIndex >=0){
+      this.pawnPlayingBlue.push(pawn);
+      console.log(this.pawnPlayingBlue);
+    }
+    if(pawn.player.color === "GREEN" && pawn.currentPositionIndex >=0){
+      this.pawnPlayingGreen.push(pawn);
+      console.log(this.pawnPlayingGreen);
+    }
+    if(pawn.player.color === "YELLOW" && pawn.currentPositionIndex >=0){
+      this.pawnPlayingYellow.push(pawn);
+      console.log(this.pawnPlayingYellow);
+    }
+  }
+
 makeWinner(pawn){
-    if (pawn.player.color === "RED"&& pawn.player.thePawns.length ===0){
-      alert("Player with color " + pawn.player.color + " named " + '"'+ pawn.player.name + '"'+ " has won!");
+    if (pawn.player.thePawns.length ===0){
+      pawn.player.hasWon++;
+      alert("Player with color " + pawn.player.color + " named " + '"'+ pawn.player.name + '"'+ " has won!" + "Player has won " + pawn.player.hasWon + " times!");
       if (confirm("Restart Game!")){
         location.reload();
       }
     }
 }
 
+
+
   onPawnClick(pawn: Pawn) {
-/*    this.nextPositionIndex = (pawn.currentPositionIndex + this.board.latestDiceResult) % this.board.totalTrackLength;*/
     this.nextPositionIndex = (pawn.currentPositionIndex + this.dice.getDiceValue());
     let pawn1: Pawn = this.positions[this.nextPositionIndex].pawn;
-    //check if next position has no pawn and move the pawn to next position
-    if (this.board.latestDiceResult > 0 &&
+    this.pawnInGameArray(pawn);
+    if (
+      this.board.latestDiceResult > 0 &&
       pawn.player == this.playerWithTurn &&
       pawn.clickable == true &&
       (this.positions[this.nextPositionIndex].hasPawn === false)
@@ -115,54 +140,38 @@ makeWinner(pawn){
       this.positions[this.previousPositionIndex].pawn = null;
       console.log("next position is free to move :  " + !this.positions[this.nextPositionIndex].hasPawn);
 
+
+
       //move pawn to next free position
 
       this.playMovePawnSound();
       pawn.currentPositionIndex = this.nextPositionIndex;
-      //assign pawn in positions array and mark that position has a pawn
+
+      this.path.lockPawn(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex,this.dice.getDiceValue());
+
       this.positions[this.nextPositionIndex].pawn = pawn;
       this.positions[this.nextPositionIndex].hasPawn = true;
       console.log(pawn.player.name + " has moved pawn to position:   " + pawn.currentPositionIndex);
       this.board.nextTurn(this.nextPlayer);
 
       this.path.overflow(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex,this.dice.getDiceValue());
-      this.path.lockPawnRed(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex);
-      this.path.lockPawnBlue(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex,this.dice.getDiceValue());
-      this.path.lockPawnGreen(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex,this.dice.getDiceValue());
-      this.path.lockPawnYellow(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex,this.dice.getDiceValue());
-      this.path.deletePawnBGY(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex);
+      this.path.deletePawnRBGY(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex);
       this.makeWinner(pawn);
+      console.log("Show all positions with hasPawn = true");
+      this.showAllHasPawn();
     }
     else{
-
-   /*     if (pawn.player.color === "RED" && this.nextPositionIndex >= 47) {
-          this.path.moveToPathRed(pawn, this.positions, this.previousPositionIndex, this.nextPositionIndex, this.dice.getDiceValue(), this.winningPathRed);}*/
-
-      //check if killable pawn is of same color on next position
-
-
           if (this.sameColor(pawn, pawn1)) {
           this.playNoMateSound();
           console.log("Your current pawn color: " + pawn.player.color)
           console.log("killable pawn color: " + pawn1.player.color)
-
           console.log(pawn.player.name + " has selected pawn on position: " + pawn.currentPositionIndex);
           console.log("killable pawn is of same color. Choose another pawn!!");
-
-          // this.nextPlayer = false;
-         // this.board.nextTurn(this.nextPlayer);
-
-          }
-
-        else{
-            //old position has no pawn after move
+          } else{
             this.previousPositionIndex = pawn.currentPositionIndex;
             this.positions[this.previousPositionIndex].hasPawn = false;
             this.positions[this.previousPositionIndex].pawn = null;
-            //move opponent pawn to his homebase
-            //KILL opponent pawn
             pawn1.currentPositionIndex = -1;
-
             this.playPunchSound();
             this.playPainSound();
 
@@ -176,6 +185,8 @@ makeWinner(pawn){
             console.log("Congrats!! " + pawn.player.name + ".You have moved to position " + pawn.currentPositionIndex +
               " and killed a pawn of " + pawn1.player.name!!);
             this.board.nextTurn(this.nextPlayer);
+
+
         }
       }
   }
@@ -209,25 +220,42 @@ makeWinner(pawn){
     audio.play();
   }
 
+
+
   onRollDice() {
-    // should be changed into a backend request for a roll and subsequent board update
     this.board.latestDiceResult = this.dice.roll();
     this.previousTurnMessage = null;
-    // this all should be done in the backend later
-    if (this.board.latestDiceResult == 6 && this.board.placeAFreePawnAtStartPosition(this.playerWithTurn)) {
+    if
+    (
+      this.board.latestDiceResult == 6 &&
+      this.board.placeAFreePawnAtStartPosition(this.playerWithTurn) &&
+      this.positions[this.playerWithTurn.startPosition].hasPawn === false
+    )
+    {
       this.board.latestDiceResult = 0;
-      //check if startposition is occupied by a pawn if so kill pawn
-      // if(this.positions[this.playerWithTurn.startPosition].hasPawn= true){
-      //   this.positions[this.playerWithTurn.startPosition].pawn.currentPositionIndex =-1;
-      // }
       this.playNewPawnSound();
       this.previousTurnMessage = `${this.playerWithTurn.name} has rolled 6; a new pawn has been placed at your start position`;
-      //mark start position has a pawn
       this.positions[this.playerWithTurn.startPosition].hasPawn = true;
-    } else if (this.playerWithTurn.numPawnsInPlay == 0) {
+    } else
+      if
+      (
+        this.playerWithTurn.numPawnsInPlay == 0
+      )
+      {
         this.previousTurnMessage = `${this.playerWithTurn.name} has rolled ${this.board.latestDiceResult}, but had no pawns in play; turn was ended`;
         this.board.nextTurn(this.nextPlayer);
-    }
+    }else
+      if
+      (
+        this.board.latestDiceResult == 6 &&
+        this.board.placeAFreePawnAtStartPosition(this.playerWithTurn) &&
+        this.positions[this.playerWithTurn.startPosition].hasPawn === true
+      )
+      {
+        this.pawnPlayingRed[0].currentPositionIndex =
+          this.pawnPlayingRed[0].currentPositionIndex +
+          this.board.latestDiceResult
+      }
     return;
   }
 
@@ -318,6 +346,5 @@ makeWinner(pawn){
     console.log(this.winningPathBlue);
 
   }
-
 }
 

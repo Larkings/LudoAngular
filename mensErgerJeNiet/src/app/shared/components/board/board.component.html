@@ -566,17 +566,17 @@
 
     </ng-container>
   </svg>
-
   <div class="rollDiceInfo">
     <h3>{{previousTurnMessage}}</h3>
     <h2>Player <span [ngClass]="'name-'+playerWithTurn.colorString">{{playerWithTurn.name}}</span> has the turn.</h2>
-    <button class="btn btn-primary"[disabled]="board.latestDiceResult > 0  " (click)="onRollDice()">Roll the dice</button>
+    <button  class="btn btn-primary"[disabled]="board.latestDiceResult > 0  " (click)="onRollDice()">Roll the dice</button>
     <h4 *ngIf="board.latestDiceResult == 0; else moveThePawn">Please roll the dice...</h4>
     <ng-template #moveThePawn>
       <h4>You have rolled {{board.latestDiceResult}}; Please click a pawn to move forward...</h4>
     </ng-template>
   </div>
 </div>
+
 <ng-template #noPlayers>
   <p>Select a game with active players</p>
 </ng-template>
