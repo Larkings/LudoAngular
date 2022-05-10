@@ -1,0 +1,37 @@
+button{
+  margin-right: 1rem;
+}
+
+.title{
+  padding-right: 10px;
+}
+
+.mini{
+  font-size: 13px;
+}
+
+.login-section{
+  margin-left: auto;
+  margin-right: unset !important;
+}
+
+.navbar-nav{
+  margin-right: auto;
+}
+
+.mat-toolbar.mat-primary {
+  position: fixed;
+  z-index: 1000;
+  background: rgba(7, 5, 5, 0.95);
+  color: rgb(255, 255, 255);
+}
+
+span{
+  padding-right: 20px;
+}
+
+.help {
+  Margin-left: 620px;
+}
+
+

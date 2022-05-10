@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "DB_CLOSE_ON_EXIT",
+      "type": "java.lang.String",
+      "description": "Description for DB_CLOSE_ON_EXIT."
+    },
+    {
+      "name": "DB_CLOSE_ON_EXIT",
+      "type": "java.lang.String",
+      "description": "Description for DB_CLOSE_ON_EXIT."
+    }
+  ] }

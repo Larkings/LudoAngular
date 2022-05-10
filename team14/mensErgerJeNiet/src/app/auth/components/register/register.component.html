@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="register-form">
+    <div class="col-md-6 offset-md-3 mt-4">
+      <div
+        class="register-wrapper"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-card class="box">
+          <mat-card-header>
+            <mat-card-title>Register</mat-card-title>
+          </mat-card-header>
+          <form
+            class="register-form"
+            name="confirmRegister"
+            #confirmRegister="ngForm"
+            (ngSubmit)="onSubmit(confirmRegister)"
+          >
+            <mat-card-content>
+              <mat-form-field class="register-full-width">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="Enter your first name" />
+              </mat-form-field>
+
+              <mat-form-field class="register-full-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Enter you last name" />
+              </mat-form-field>
+
+              <mat-form-field class="register-full-width">
+                <mat-label>User Name</mat-label>
+                <input matInput required placeholder="exp. BlackJack112" />
+              </mat-form-field>
+
+              <mat-form-field class="register-full-width">
+                <mat-label>Email Address</mat-label>
+                <input
+                  matInput
+                  required
+                  placeholder="exp. example@domain.com"
+                />
+              </mat-form-field>
+
+              <mat-form-field class="register-full-width">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  required
+                  [type]="hide ? 'password' : 'text'"
+                  placeholder="Password"
+                />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="' Hide password'"
+                  [attr.aria-pressed]="hide"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+              </mat-form-field>
+              <mat-form-field class="register-full-width">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput required placeholder="Re-enter your password" />
+                <button
+                  mat-icon-button
+                  matSuffix
+                  (click)="hide = !hide"
+                  [attr.aria-label]="' Hide password'"
+                  [attr.aria-pressed]="hide"
+                >
+                  <mat-icon>{{
+                    hide ? "visibility_off" : "visibility"
+                  }}</mat-icon>
+                </button>
+              </mat-form-field>
+
+              <mat-form-field class="register-full-width">
+                <mat-label>Addresss</mat-label>
+                <input matInput required placeholder="exp. Wibautstraat 5" />
+              </mat-form-field>
+
+              <mat-form-field class="register-full-width">
+                <mat-label>ZIP Code</mat-label>
+                <input matInput required placeholder="exp. 1104 AK" />
+              </mat-form-field>
+            </mat-card-content>
+            <button [disabled]="confirmRegister.invalid" mat-stroked-button color="accent" class="btn-block">
+              Register <mat-icon>register</mat-icon>
+            </button>
+            <a class="register-form first" [routerLink]="['/login']"
+            >Nevermind, Login</a>
+
+            <a class="register-form" [routerLink]="['/reset-password']"
+            >Forgot password</a>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
